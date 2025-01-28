@@ -5,20 +5,15 @@
 ## Fonte: Provvedimenti di autorizzazione
 Elenco dei provvedimenti di autorizzazione unica rilasciati dalla Struttura di missione ZES ai sensi degli articoli 14 e 15 del decreto-legge n. 124 del 2023.
 
-
 ![](ZES.png)
-
 
 ```{python}
 import camelot
 import pandas as pd
 import numpy as np
-
 import matplotlib.pyplot as plt	
 import pandas as pd
 import geopandas as gpd # pip install geopandas
-
-
 pdf_path = 'D:/au-24012025.pdf' # Path to the PDF
 
 tables = camelot.read_pdf(pdf_path, pages="all", strip_text="\n", line_scale=40) # Extract tables using Camelot
@@ -38,5 +33,7 @@ def split_id_pratica(value):
 
 # Applicazione della funzione e creazione delle nuove colonne
 df[["CF", "IN", "ID"]] = df["ID pratica"].apply(split_id_pratica).apply(pd.Series)
+
+df.to_csv('D:/ZES_2025.csv',sep='|')
 
 ```
